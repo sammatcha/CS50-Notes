@@ -121,4 +121,42 @@ example:
 `.` means current directory
 
 # Types, format codes, operators
+## Data Types
+- `bool` (Boolean): True/False
+- `char`: single character like `a` or `2`
+- `double`: floating-pt value with more digits than a `float`, more precision
+- `float`: floating-pt value or real number with a decimal value
+- `int`: integers up to a certain size or number of bits
+- `long`: bigger integer, can count higher than `int`
+- `string`
 
+## format codes
+printing different types of data `printf`
+- `%c` char
+- `%f` floats/ doubles
+- `%i` ints
+- `%li` long integers
+- `%s` string
+
+## Operators
+- `+` addition
+- `-` subtraction
+- `*` multiplication
+- `/` division
+- `%` remainder
+
+# Variables, syntactic sugar
+counter in C:
+```
+int counter = 0;
+```
+incrementing counter:
+```counter = counter + 1;
+```
+a more succinct way to write this is :
+``` counter +=1;
+```
+or 
+```
+counter++;
+```
