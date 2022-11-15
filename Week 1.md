@@ -160,3 +160,184 @@ or
 ```
 counter++;
 ```
+# Calcuations
+calculator.c
+```
+#include <cs50.h>
+#include <stdio.h>
+
+int main(void)
+{
+    int x = get_int("x: ");
+    int y = get_int("y: ");
+    printf("%i\n", x + y);
+}
+```
+## Compiling
+[Follow the CS50 Docs](https://cs50.readthedocs.io/libraries/cs50/c/)
+- I followed From Source instructions and the environment variables
+I was not able to compile with the `make` command but what worked for me was:
+```
+clang -o calculator calculator.c -lcs50
+```
+```
+./calculator
+```
+run the code again w/ `./calculator` <br>
+`x =1000000000` <br>
+`y = 1000000000` <br>
+`2000000000` <br>
+run the code again <br>
+`x = 2000000000` <br>
+`y = 2000000000` <br>
+`-294967296`
+**why?**
+*ran out of bits* the data types use finite amount of bits
+`int` can count up to -2B to 2B <br>
+change the data type to `long`
+```
+int main(void)
+{
+    long x = get_long("x: ");
+    long y = get_long("y: ");
+    printf ("%li\n", x+y);
+}
+```
+compile code again and run again should result in previous calculation of 2B+2B = 4B
+## Condition & Boolean
+# if 
+```
+if (x < y){
+    printf("x is less than y");
+}
+```
+# if / else
+```
+if (x < y)
+{
+    printf("x is less than y\n");
+}
+else
+{
+    printf("x is not less than y\n");
+}
+```
+# else if
+```
+if (x < y)
+{
+    printf("x is less than y\n");
+}
+else if (x > y)
+{
+    printf("x is greater than y\n");
+}
+else (x == y)
+{
+    printf("x is equal to y\n");
+}
+```
+### agree.c 
+//asking user if they agree
+```
+//program to agree or not to agree
+#include <cs50.h>
+#include <stdio.h>
+
+int main(void)
+{
+    // Prompt user to agree
+    char c = get_char("Do you agree? ");
+
+    // Check whether agreed
+    if (c == 'Y' || c == 'y')
+    {
+        printf("Cool\n");
+    }
+    else if (c == 'N' || c == 'n')
+    {
+        printf("Why not?\n");
+    }
+}
+```
+
+`||` means *or*
+`&&` means *and*
+`char` is surrounded by `' '` (single quotes)
+- `string` uses `" "` (double quotes)
+
+## Loops
+while loop repeats while condition is true
+program to meow 3x:
+```
+//program to meow 3x using while loop
+
+int main (void)
+{
+// initialize variable
+    int i = 0;
+    while (i<3) //ask question
+    {
+        printf("nya\n");
+        i+=1; // increment counter
+    }
+}
+```
+can also use a for loop:
+```
+//program to meow 3x using for loop
+
+#include <stdio.h>
+int main (void)
+{
+    for (int i = 0; i < 3; i++)
+    {
+        printf("nya\n");
+    }
+    
+}
+```
+differences between the two loops is that initializing variables outside of the loop will be applied to rest of code
+
+## Creating our own function
+*return type* function (*input)
+example: 
+``` void nya (void)
+```
+void means it doesnt return anything and it doesnt take inputs/ arguments <br>
+call the function <br>
+
+if you move the created function on the bottom, there will be errors because the compiler reads from top to bottom. <br>
+declare the function with a **prototype** on top to tell the compiler function will be defined later <br>
+example:
+```
+void nya (void);
+int ...{ }
+for ... 
+{ }
+void nya(void)
+{
+printf("nya\n");
+}
+```
+## Note:
+- get_string and those related functions are part of the cs50 library `<cs50.h>`
+
+## Imprecision, Overflow
+using `calculator.c` and asking for 50 decimal places with `% .50f` leads to **floating- point imprecision** which is inability for computers to represent all real numbers 100% precisely.
+using calculator.c <br>
+```
+int main(void)
+{
+    int x = get_long("x: ");
+    int y = get_long("y: ");
+    float z = (float) x / (float)y;
+    printf ("%.50f\n", z);
+
+```
+x and y are `int` types and z is a `float`. Convert int type to float for x and or y to get an answer closer to the actual answer but there is still imprecision. <br>
+
+use `math.h` library to use **round** function
+in a program to convert dollar amount to pennies, use round function to get a correct penny amount for $4.20
+- when we didnt use round, the program resulted in 419 pennies for $4.20 
+
