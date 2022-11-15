@@ -151,10 +151,12 @@ counter in C:
 int counter = 0;
 ```
 incrementing counter:
-```counter = counter + 1;
+```
+counter = counter + 1;
 ```
 a more succinct way to write this is :
-``` counter +=1;
+```
+counter +=1;
 ```
 or 
 ```
